@@ -1,38 +1,43 @@
 <template>
   <header class="header-with-searcher">
     <div class="header-content">
-      <span class="site-logo">Re0pc's Blog</span>
-      <ul class="nav-list">
-        <li v-for="(nav,idx) in navList" :key="idx">
-          <a class="nav" :href="nav.route">{{ nav.txt }}</a>
-        </li>
-      </ul>
+      <div class="left-container">
+        <span class="site-logo">Re0pc's Blog</span>
+        <ul class="nav-list">
+          <li v-for="(nav,idx) in navList" :key="idx">
+            <a class="nav" :href="nav.route">{{ nav.txt }}</a>
+          </li>
+        </ul>
+      </div>
+      <tg-search></tg-search>
     </div>
   </header>
 </template>
 
 <script>
-export default {
-  name: 'header-with-searcher',
-  data() {
-    return {
-      navList: [
-        { txt: '首页', route: '/' },
-        { txt: '归档', route: '/' },
-        { txt: '分类', route: '/' },
-        { txt: '标签', route: '/' },
-        { txt: '关于', route: '/' },
-      ],
-    };
-  },
-};
+  import TgSearch from './TgSearch';
+
+  export default {
+    name: 'header-with-searcher',
+    components: {
+      TgSearch,
+    },
+    data() {
+      return {
+        navList: [
+          { txt: '首页', route: '/' },
+          { txt: '归档', route: '/' },
+          { txt: '分类', route: '/' },
+          { txt: '标签', route: '/' },
+          { txt: '关于', route: '/' },
+        ],
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-  $light-grey: #F5F5F5;
-  $dark-grey: #E0E0E0;
-  $light-text-grey: #888;
-  $content-width: 900px;
+  @import '../assets/css/global';
 
   .header-with-searcher {
     background: $light-grey;
@@ -48,6 +53,9 @@ export default {
     width: $content-width;
     margin: 0 auto;
     padding: 30px 5px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
   }
 
   .nav-list {
@@ -70,5 +78,9 @@ export default {
     text-decoration: none;
     color: $light-text-grey;
     font-size: 12px;
+  }
+
+  .tg-search {
+    display: inline-block;
   }
 </style>
