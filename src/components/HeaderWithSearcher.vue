@@ -43,6 +43,17 @@
 <style lang="scss" scoped>
   @import '../assets/css/global';
 
+  @media screen and (min-width: $content-width) {
+    .header-content {
+      width: $content-width;
+    }
+  }
+
+  @media screen and (max-width: 899px) {
+    .header-content {
+      width: 100%;
+    }
+  }
   .header-with-searcher {
     background: $light-grey;
   }
@@ -56,9 +67,8 @@
 
   .header-content {
     height: 80px;
-    width: $content-width;
     margin: 0 auto;
-    padding: 30px 5px;
+    padding: 30px 0;
     justify-content: space-between;
     display: flex;
     align-items: center;

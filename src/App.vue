@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <header-with-searcher></header-with-searcher>
+    <body-content></body-content>
   </div>
 </template>
 
 <script>
 import HeaderWithSearcher from './components/HeaderWithSearcher';
+import BodyContent from './components/BodyContent';
 
 export default {
   name: 'App',
   components: {
     HeaderWithSearcher,
+    BodyContent,
   },
 }
 </script>
