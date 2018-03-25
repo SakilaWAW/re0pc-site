@@ -31,7 +31,7 @@
     border: none;
     outline: none;
     background: $light-grey;
-    font-size: 16px;
+    font-size: 12px;
     color: $light-text-grey;
   }
 
@@ -51,6 +51,6 @@
     -moz-osx-font-smoothing: grayscale;
   }
   .search-placeholder {
-    font-size: 16px;
+    font-size: 12px;
   }
 </style>

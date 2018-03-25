@@ -2,7 +2,11 @@
   <header class="header-with-searcher">
     <div class="header-content">
       <div class="left-container">
-        <span class="site-logo">Re0pc's Blog</span>
+        <div class="logo-container hover-pointer">
+          <div class="border-line top-border"></div>
+          <span class="site-logo">Re0pc's Blog</span>
+          <div class="border-line bottom-border"></div>
+        </div>
         <ul class="nav-list">
           <li v-for="(nav,idx) in navList" :key="idx">
             <a class="nav" :href="nav.route">{{ nav.txt }}</a>
@@ -43,9 +47,11 @@
     background: $light-grey;
   }
 
-  .site-logo {
+  .logo-container {
     font-size: 20px;
     font-weight: bold;
+    display: inline-block;
+    position: relative;
   }
 
   .header-content {
@@ -82,5 +88,20 @@
 
   .tg-search {
     display: inline-block;
+  }
+  .border-line {
+    height: 2px;
+    width: 80%;
+    background: black;
+    position: absolute;
+  }
+  .top-border {
+    top: -8px;
+    left: 10%;
+  }
+
+  .bottom-border {
+    bottom: -8px;
+    right: 10%;
   }
 </style>
