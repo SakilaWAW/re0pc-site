@@ -9,6 +9,8 @@
 <script>
   import marked from 'marked';
   import 'github-markdown-css';
+  import '../assets/css/atom-one-dark.css';
+  import highlight from 'highlight.js';
 
   export default {
     name: 'body-content',
@@ -155,12 +157,39 @@
         '`writable:false`+`configurable:false`=>常量\n' +
         '`Object.preventExtensions(obj)`=>禁止新增属性（视模式判定报错与否，同前）\n' +
         '`Object.preventExtensions(obj)`+`configurable:false`=> `Object.seal(..)`：属性固定死，但是可以改值。\n' +
-        '`Object.seal(..)`+`writable:false`=>`Object.freeze(..)`，终极封印，啥也别动了。同样是**浅逻辑**，属性为引用时并不能封印到引用指向的对象。',
+        '`Object.seal(..)`+`writable:false`=>`Object.freeze(..)`，终极封印，啥也别动了。同样是**浅逻辑**，属性为引用时并不能封印到引用指向的对象。\n' +
+        '```javascript\nfunction $initHighlight(block, cls) {\n' +
+        '  try {\n' +
+        '    if (cls.search(/\\bno\\-highlight\\b/) != -1)\n' +
+        '      return process(block, true, 0x0F) +\n' +
+        '             ` class="${cls}"`;\n' +
+        '  } catch (e) {\n' +
+        '    /* handle exception */\n' +
+        '  }\n' +
+        '  for (var i = 0 / 2; i < classes.length; i++) {\n' +
+        '    if (checkCondition(classes[i]) === undefined)\n' +
+        '      console.log(\'undefined\');\n' +
+        '  }\n' +
+        '}\n' +
+        '\n' +
+        'export  $initHighlight;\n```',
       };
     },
     computed: {
       markdownContent() {
-        return marked(this.markdownSrc);
+        return marked(this.markdownSrc, {
+          renderer: new marked.Renderer(),
+          gfm: true,
+          tables: true,
+          breaks: false,
+          pedantic: false,
+          sanitize: false,
+          smartLists: true,
+          smartypants: false,
+          highlight: function (code) {
+            return highlight.highlightAuto(code).value;
+          },
+        });
       }
     }
   };
