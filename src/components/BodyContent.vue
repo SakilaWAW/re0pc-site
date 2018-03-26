@@ -1,13 +1,14 @@
 <template>
   <div class="body-content">
     <div class="content-area">
-      <article v-html="markdownContent"></article>
+      <article class="markdown-body" v-html="markdownContent"></article>
     </div>
   </div>
 </template>
 
 <script>
   import marked from 'marked';
+  import 'github-markdown-css';
 
   export default {
     name: 'body-content',
@@ -178,5 +179,13 @@
   }
   .content-area {
     margin: 0 auto;
+  }
+
+  .markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
   }
 </style>
