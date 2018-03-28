@@ -1,16 +1,18 @@
 <template>
   <div class="body-content">
     <div class="content-area">
-      <article class="markdown-body" v-html="markdownContent"></article>
+      <article class="markdown-body" v-html="markdownContent" v-highlight></article>
     </div>
   </div>
 </template>
 
 <script>
   import marked from 'marked';
+  import Vue from 'vue';
   import 'github-markdown-css';
-  import '../assets/css/atom-one-dark.css';
-  import highlight from 'highlight.js';
+  import Highlight from '../assets/js/highlightPlugin';
+
+  Vue.use(Highlight);
 
   export default {
     name: 'body-content',
@@ -128,7 +130,7 @@
         '对象的属性并不是只有值，每个属性还对应了比较特殊的属性描述符(`writable、enumerable、configurable`)\n' +
         '\n' +
         '定义属性的时候可以这样定义:\n' +
-        '```\n' +
+        '```javascript\n' +
         'Object.defineProperty(myObject, \'a\', {\n' +
         '    value: 1,\n' +
         '    writable: true,\n' +
@@ -177,19 +179,7 @@
     },
     computed: {
       markdownContent() {
-        return marked(this.markdownSrc, {
-          renderer: new marked.Renderer(),
-          gfm: true,
-          tables: true,
-          breaks: false,
-          pedantic: false,
-          sanitize: false,
-          smartLists: true,
-          smartypants: false,
-          highlight: function (code) {
-            return highlight.highlightAuto(code).value;
-          },
-        });
+        return marked(this.markdownSrc);
       }
     }
   };
