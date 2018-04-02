@@ -8,8 +8,10 @@
           <div class="border-line bottom-border"></div>
         </div>
         <ul class="nav-list">
-          <li v-for="(nav,idx) in navList" :key="idx">
-            <a class="nav" :href="nav.route">{{ nav.txt }}</a>
+          <li v-for="(nav,idx) in navList" :key="idx"
+              class="nav"
+              @click="jumpTo(nav.route)">
+            {{ nav.txt }}
           </li>
         </ul>
       </div>
@@ -29,13 +31,18 @@
     data() {
       return {
         navList: [
-          { txt: '首页', route: '/' },
-          { txt: '归档', route: '/' },
-          { txt: '分类', route: '/' },
-          { txt: '标签', route: '/' },
-          { txt: '关于', route: '/' },
+          { txt: '首页', route: '/index' },
+          { txt: '归档', route: '/archive' },
+          { txt: '分类', route: '/classification' },
+          { txt: '标签', route: '/tags' },
+          { txt: '关于', route: '/about' },
         ],
       };
+    },
+    methods: {
+      jumpTo(location) {
+        this.$router.push({ path: location });
+      },
     },
   };
 </script>
@@ -85,13 +92,11 @@
     transition: background 0.25s ease-in-out;
   }
   .nav-list li:hover {
-    color: red;
     background: $dark-grey;
     cursor: pointer;
   }
 
   .nav {
-    text-decoration: none;
     color: $light-text-grey;
     font-size: 12px;
   }

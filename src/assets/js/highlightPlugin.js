@@ -1,6 +1,6 @@
 // highlight.js
 import Hljs from 'highlight.js'
-import 'highlight.js/styles/atom-one-light.css';
+import 'highlight.js/styles/github.css';
 let Highlight = {};
 Highlight.install = function (Vue, options) {
   Vue.directive('highlight', function (el) {
