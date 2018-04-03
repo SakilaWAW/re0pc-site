@@ -10,6 +10,7 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
+    { path: '', redirect: '/index' },
     { path: '/index', component: IndexArea },
     { path: '/archive', component: ArchiveArea },
     { path: '/classification', component: ClassificationArea },
