@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import { Pagination } from 'element-ui';
+import './css/element-variables.scss'
 
 Vue.config.productionTip = false;
 Vue.use(Pagination);

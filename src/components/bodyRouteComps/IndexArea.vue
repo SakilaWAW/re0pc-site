@@ -8,7 +8,7 @@
       <!--</div>-->
       <el-pagination
         layout="prev, pager, next"
-        :total="4">
+        :total="articleList.total_page*10">
       </el-pagination>
     </div>
   </div>
