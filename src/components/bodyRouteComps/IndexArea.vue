@@ -6,7 +6,8 @@
     </div>
     <el-pagination
       layout="prev, pager, next"
-      :total="articleList.total_page*10">
+      :total="articleList.total_page*10"
+      @current-change="handleCurrentChange">
     </el-pagination>
   </div>
 </template>
@@ -29,10 +30,11 @@
     data() {
       return {
         articleList: [],
+        currentIdx: 1,
       };
     },
     created() {
-      this.toPage(1);
+      this.toPage(this.currentIdx);
     },
     computed: {
       markdownContent() {
@@ -47,6 +49,9 @@
           }).catch(err=>{
           console.log(err);
         });
+      },
+      handleCurrentChange(val) {
+        this.toPage(val);
       },
     }
   };
