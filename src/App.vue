@@ -51,7 +51,7 @@ export default {
     right: 40px;
     background: black;
     color: white;
-    padding: 3px;
+    font-size: 22px;
   }
   .rtn-top-btn:hover {
     cursor: pointer;
