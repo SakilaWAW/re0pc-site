@@ -5,11 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    count: 0
+    cur_article: ''
   },
   mutations: {
-    increment (state) {
-      state.count++
+    setArticle (state, payload) {
+      state.cur_article = payload.article;
     }
   }
 });

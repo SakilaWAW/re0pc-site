@@ -1,21 +1,21 @@
 <template>
   <div class="article-intro">
     <div class="ai-title">{{ article.title }}</div>
-    <div class="ai-sub-info">
-      <span class="right-sap-line">发表于{{ article.createdAt }}</span>
-      <span class="ais-type right-sap-line">分类于<a href="#" class="ais-type-text">{{ article.type }}</a></span>
-      <span>阅读次数 {{ article.count }}</span>
-    </div>
+    <article-sub-info :article="article"></article-sub-info>
     <div class="brief-info markdown-body" v-html="markdownBrief"></div>
-    <a class="read-all-link" href="#">阅读全文<i class="el-icon-d-arrow-right"></i></a>
+    <a class="read-all-link" @click="jumpToArticle()">阅读全文<i class="el-icon-d-arrow-right"></i></a>
   </div>
 </template>
 
 <script>
   import marked from 'marked';
+  import ArticleSubInfo from '../commons/ArticleSubInfo';
 
   export default {
     name: 'article-intro',
+    components: {
+      ArticleSubInfo,
+    },
     props: [
       'article',
     ],
@@ -27,6 +27,12 @@
         return marked(content);
       },
     },
+    methods: {
+      jumpToArticle() {
+        this.$store.commit('setArticle', {article: this.article});
+        this.$router.push(`/article/${this.article.id}`);
+      },
+    }
   };
 </script>
 
@@ -37,34 +43,7 @@
   .ai-title {
     font-size: 26px;
   }
-  .ai-sub-info {
-    font-size: 12px;
-    color: darkgrey;
-    margin: 20px 0;
-    padding-left: 2px;
-  }
-  .ais-type-text {
-    text-decoration: underline;
-    font-weight: bold;
-    color: darkgrey;
-  }
-  .ais-type-text:hover {
-    color: grey;
-  }
-  .right-sap-line::after {
-    top: 1px;
-    right: -7px;
-    z-index: 1;
-    position: absolute;
-    content: "";
-    height: 12px;
-    width: 1px;
-    background: grey;
-  }
-  .ai-sub-info span {
-    position: relative;
-    margin-right: 10px;
-  }
+
   .brief-info {
     margin: 20px 0;
   }
@@ -78,6 +57,7 @@
   }
   .read-all-link:hover {
     color: grey;
+    cursor: pointer;
     border-bottom-color: grey;
   }
 </style>

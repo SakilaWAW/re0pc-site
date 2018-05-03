@@ -5,6 +5,7 @@ import ClassificationArea from '../components/bodyRouteComps/ClassificationArea'
 import TagsArea from '../components/bodyRouteComps/TagsArea';
 import AboutArea from '../components/bodyRouteComps/AboutArea';
 import ArchiveArea from '../components/bodyRouteComps/ArchiveArea';
+import ArticleArea from '../components/bodyRouteComps/ArticleArea';
 
 Vue.use(Router);
 
@@ -16,5 +17,6 @@ export default new Router({
     { path: '/classification', component: ClassificationArea },
     { path: '/tags', component: TagsArea },
     { path: '/about', component: AboutArea },
+    { path: '/article/:articleId', component: ArticleArea },
   ],
 })

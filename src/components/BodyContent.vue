@@ -25,6 +25,6 @@
   }
   .content-area {
     margin: 0 auto;
-    padding: 50px 5px;
+    padding: 30px 5px;
   }
 </style>

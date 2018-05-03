@@ -1,6 +1,5 @@
 <template>
   <div class="index-area">
-    <!-- <div class="about-area markdown-body" v-html="markdownContent"></div>-->
     <div class="index-list">
       <article-intro v-for="(article,idx) in articleList.articles" :article="article" :key="idx"></article-intro>
     </div>
