@@ -2,6 +2,7 @@
   <div id="app">
     <header-with-searcher></header-with-searcher>
     <body-content></body-content>
+    <i class="el-icon-caret-top rtn-top-btn" @click="rtnTop"></i>
   </div>
 </template>
 
@@ -14,6 +15,21 @@ export default {
   components: {
     HeaderWithSearcher,
     BodyContent,
+  },
+  methods: {
+    rtnTop() {
+      const intervalId = setInterval(()=>{
+        var heightTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if(heightTop <= 160) {
+          document.documentElement.scrollTop = document.body.scrollTop = 0;
+          clearInterval(intervalId)
+        }
+        else {
+          document.documentElement.scrollTop -= 160;
+          document.body.scrollTop -= 160;
+        }
+      },20);
+    },
   },
 }
 </script>
@@ -28,5 +44,16 @@ export default {
   body {
     margin: 0;
     padding: 0;
+  }
+  .rtn-top-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background: black;
+    color: white;
+    padding: 3px;
+  }
+  .rtn-top-btn:hover {
+    cursor: pointer;
   }
 </style>
