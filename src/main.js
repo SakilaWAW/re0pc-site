@@ -6,9 +6,12 @@ import App from './App'
 import router from './router'
 import { Pagination } from 'element-ui'
 import './css/element-variables.scss'
+import axios from 'axios';
 
 Vue.config.productionTip = false;
 Vue.use(Pagination);
+
+Vue.prototype.$axios = axios;
 
 /* eslint-disable no-new */
 new Vue({

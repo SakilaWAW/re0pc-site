@@ -9,7 +9,6 @@
 <script>
   import ArticleSubInfo from '../commons/ArticleSubInfo';
   import marked from 'marked';
-  import axios from 'axios';
 
   export default {
     name: 'article-area',
@@ -27,7 +26,7 @@
     },
     methods: {
       fetchData() {
-        axios.get(`http://127.0.0.1:3000/article/${this.articleId}`)
+        this.$axios.get(`http://127.0.0.1:3000/article/${this.articleId}`)
           .then(res=>{
             this.article = res.data;
             this.$store.commit('setArticle', {article: res.data});
@@ -36,7 +35,7 @@
         });
       },
       updateCount() {
-        axios.get(`http://127.0.0.1:3000/read/${this.articleId}`)
+        this.$axios.get(`http://127.0.0.1:3000/read/${this.articleId}`)
           .then(res=>{
             console.log(`返回code为${res.status}`);
           }).catch(err=>{
