@@ -1,5 +1,5 @@
 <template>
-  <div class="about-area">
+  <div class="tags-area">
     tags
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="about-area">
+  <div class="archive-area">
     archive
   </div>
 </template>
