@@ -13,7 +13,6 @@
 
 <script>
   import marked from 'marked';
-  import axios from 'axios';
   import Vue from 'vue';
   import 'github-markdown-css';
   import Highlight from '../../assets/js/highlightPlugin';
@@ -42,7 +41,7 @@
     },
     methods: {
       toPage(page) {
-        axios.get(`http://127.0.0.1:3000/page/${page}`)
+        this.$axios.get(`http://127.0.0.1:3000/page/${page}`)
           .then((res)=>{
             this.articleList = res.data;
           }).catch(err=>{
