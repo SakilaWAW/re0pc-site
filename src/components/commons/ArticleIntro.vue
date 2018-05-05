@@ -38,7 +38,7 @@
 
 <style lang="scss" scoped>
   .article-intro {
-    margin: 40px 0;
+    margin-bottom: 40px;
   }
   .ai-title {
     font-size: 26px;
