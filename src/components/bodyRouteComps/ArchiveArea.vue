@@ -1,16 +1,25 @@
 <template>
   <div class="archive-area">
-    <div class="ara-summary"><i class="iconfont summary-point time-point">&#xe608;</i>Good！你已经完成了{{ archive.total }}篇博客,继续努力！</div>
+    <div class="ara-summary"><i class="iconfont summary-point">&#xe608;</i>Good！你已经完成了{{ archive.total }}篇博客,继续努力！</div>
     <div class="year-summary" v-for="(yearSummary,idx) in archive.articles" :key="idx">
-      <div class="ys-title"><i class="iconfont year-point time-point">&#xe608;</i>{{ yearSummary.year }}</div>
-      {{ yearSummary.articles }}
+      <div class="ys-year">
+        <i class="iconfont year-point">&#xe608;</i>{{ yearSummary.year }}
+      </div>
+      <div v-for="article in yearSummary.articles">
+        <archive-item :article="article"></archive-item>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+  import ArchiveItem from '../commons/ArchiveItem';
+
   export default {
     name: 'archive-area',
+    components: {
+      ArchiveItem,
+    },
     created() {
       if(this.archive === '') this.fetchArchive();
     },
@@ -36,29 +45,31 @@
   @import '../../assets/css/global';
   .archive-area {
     border-left: 5px solid $light-grey;
+    padding-bottom: 5px;
+  }
+  .ara-summary, .ys-year {
     padding-left: 20px;
   }
   .ara-summary {
     font-size: 16px;
     position: relative;
   }
-  .ys-title {
+  .ys-year {
     font-size: 22px;
-    margin: 50px 0;
+    margin: 50px 0 40px 0;
     font-weight: bold;
     position: relative;
   }
-  .year-point {
-    font-size: 20px;
-    position: absolute;
-    left: -33px;
-  }
   .summary-point {
     font-size: 28px;
-    left: -37px;
+    left: -17px;
     top: -10px;
+    position: absolute;
+    color: darkgrey;
   }
-  .time-point {
+  .year-point {
+    font-size: 20px;
+    left: -13px;
     position: absolute;
     color: darkgrey;
   }
