@@ -58,11 +58,11 @@ export default {
   }
   @font-face {
     font-family: 'iconfont';  /* project id 597267 */
-    src: url('//at.alicdn.com/t/font_597267_wic64zp1ystw3ik9.eot');
-    src: url('//at.alicdn.com/t/font_597267_wic64zp1ystw3ik9.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_597267_wic64zp1ystw3ik9.woff') format('woff'),
-    url('//at.alicdn.com/t/font_597267_wic64zp1ystw3ik9.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_597267_wic64zp1ystw3ik9.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_597267_236q8nzvcqt49529.eot');
+    src: url('//at.alicdn.com/t/font_597267_236q8nzvcqt49529.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_597267_236q8nzvcqt49529.woff') format('woff'),
+    url('//at.alicdn.com/t/font_597267_236q8nzvcqt49529.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_597267_236q8nzvcqt49529.svg#iconfont') format('svg');
   }
   .iconfont{
     font-family:"iconfont";
