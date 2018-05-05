@@ -1,8 +1,8 @@
 <template>
   <div class="archive-area">
-    <div class="ara-summary">Good！你已经完成了{{ archive.total }}篇博客,继续努力！</div>
+    <div class="ara-summary"><i class="iconfont summary-point time-point">&#xe608;</i>Good！你已经完成了{{ archive.total }}篇博客,继续努力！</div>
     <div class="year-summary" v-for="(yearSummary,idx) in archive.articles" :key="idx">
-      <div class="ys-title">{{ yearSummary.year }}</div>
+      <div class="ys-title"><i class="iconfont year-point time-point">&#xe608;</i>{{ yearSummary.year }}</div>
       {{ yearSummary.articles }}
     </div>
   </div>
@@ -40,10 +40,26 @@
   }
   .ara-summary {
     font-size: 16px;
+    position: relative;
   }
   .ys-title {
     font-size: 22px;
     margin: 50px 0;
     font-weight: bold;
+    position: relative;
+  }
+  .year-point {
+    font-size: 20px;
+    position: absolute;
+    left: -33px;
+  }
+  .summary-point {
+    font-size: 28px;
+    left: -37px;
+    top: -10px;
+  }
+  .time-point {
+    position: absolute;
+    color: darkgrey;
   }
 </style>
