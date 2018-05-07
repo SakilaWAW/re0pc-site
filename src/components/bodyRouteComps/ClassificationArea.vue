@@ -2,9 +2,9 @@
   <div class="classification-area">
     <div class="ca-title">目前共计{{ categoryData.length }}个分类</div>
     <div class="category-bar">
-      <div v-for="type in categoryData" class="type-text">
-        <span class="cb-name">{{ type.name }}</span>
-        <span class="cb-count">({{ type.total }})</span>
+      <div v-for="cate in categoryData" class="type-text">
+        <span class="cb-name">{{ cate.type }}</span>
+        <span class="cb-count">({{ cate.count }})</span>
       </div>
     </div>
   </div>
@@ -13,24 +13,23 @@
 <script>
   export default {
     name: 'classification-area',
+    created() {
+      this.fetchCategoryData();
+    },
     data() {
       return {
-        categoryData: [
-          { total: 31, name: '分类1'},
-          { total: 29, name: '分类奇'},
-          { total: 20, name: '分类怪'},
-          { total: 10, name: '分类贪'},
-          { total: 13, name: '分类嗔'},
-          { total: 2, name: '分类痴'},
-          { total: 4, name: '分类恨'},
-          { total: 31, name: '分类爱别离'},
-          { total: 1, name: '分类求不得'},
-          { total: 2, name: '分类欲'},
-          { total: 30, name: '分类Mi'},
-          { total: 40, name: '分类'},
-          { total: 19, name: '分类奇'},
-        ],
+        categoryData: [],
       };
+    },
+    methods: {
+      fetchCategoryData() {
+        this.$axios.get('http://127.0.0.1:3000/stats/type')
+          .then(res=>{
+            this.categoryData = res.data;
+          }).catch(err=>{
+            console.log(`fetchCategoryData出问题了!${err}`);
+        });
+      },
     },
   };
 </script>
