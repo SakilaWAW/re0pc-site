@@ -1,12 +1,10 @@
 <template>
   <div class="classification-area">
     <div class="ca-title">目前共计{{ categoryData.length }}个分类</div>
-    <div class="category-bar">
       <div v-for="cate in categoryData" class="type-text">
         <span class="cb-name">{{ cate.type }}</span>
         <span class="cb-count">({{ cate.count }})</span>
       </div>
-    </div>
   </div>
 </template>
 
@@ -39,14 +37,12 @@
   .ca-title {
     text-align: center;
     font-size: 17px;
+    margin-bottom: 25px;
   }
   .type-text {
     display: inline-block;
     margin: 12px;
     font-size: 15px;
-  }
-  .category-bar {
-    margin-top: 25px;
   }
   .cb-count {
     color: grey;
