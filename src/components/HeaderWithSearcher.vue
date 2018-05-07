@@ -33,7 +33,7 @@
         navList: [
           { txt: '首页', route: '/index' },
           { txt: '归档', route: '/archive' },
-          { txt: '分类', route: '/classification' },
+          { txt: '分类', route: '/category' },
           { txt: '标签', route: '/tags' },
           { txt: '关于', route: '/about' },
         ],

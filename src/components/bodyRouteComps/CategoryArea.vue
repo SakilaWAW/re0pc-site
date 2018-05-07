@@ -1,5 +1,5 @@
 <template>
-  <div class="classification-area">
+  <div class="category-area">
     <div class="ca-title">目前共计{{ categoryData.length }}个分类</div>
       <div v-for="cate in categoryData" class="type-text">
         <span class="cb-name">{{ cate.type }}</span>
@@ -10,7 +10,7 @@
 
 <script>
   export default {
-    name: 'classification-area',
+    name: 'category-area',
     created() {
       this.fetchCategoryData();
     },
