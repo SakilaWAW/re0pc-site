@@ -3,7 +3,7 @@
     <div class="ta-title">目前共计{{ tagData.length }}个标签</div>
     <div class="tag-bar">
       <auto-adapt-text v-for="(data,idx) in tagData" :key="idx"
-                       :size="data.count" :text="data.tag" @clickEvent="jumpToTagDetail()"></auto-adapt-text>
+                       :size="data.count" :text="data.tag" @clickEvent="jumpToTagDetail(data.tag)"></auto-adapt-text>
     </div>
   </div>
 </template>
@@ -33,9 +33,8 @@
             console.log(`fetchTagData出问题了${err}`);
         });
       },
-      jumpToTagDetail() {
-        console.log(`jumpToTagDetail()`);
-        this.$router.push('/tags/detail');
+      jumpToTagDetail(tag) {
+        this.$router.push(`/tag/${tag}`);
       },
     }
   };

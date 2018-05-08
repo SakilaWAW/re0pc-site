@@ -1,5 +1,7 @@
 <template>
-  <span class="auto-adapt-text" :style="{fontSize: `${textSize}px`, opacity: textOpacity}">{{ text }}</span>
+  <span class="auto-adapt-text"
+        :style="{fontSize: `${textSize}px`, opacity: textOpacity}"
+        @click="click">{{ text }}</span>
 </template>
 
 <script>
@@ -16,7 +18,12 @@
       textOpacity() {
         return -(7/10)/this.size+1;
       },
-    }
+    },
+    methods: {
+      click() {
+        this.$emit('clickEvent');
+      },
+    },
   };
 </script>
 

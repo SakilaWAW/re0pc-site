@@ -2,7 +2,7 @@
   <div class="category-area">
     <div class="ca-title">目前共计{{ categoryData.length }}个分类</div>
       <div v-for="cate in categoryData" class="type-text">
-        <span class="cb-name">{{ cate.type }}</span>
+        <span class="cb-name" @click="jumpToDetail(cate.type)">{{ cate.type }}</span>
         <span class="cb-count">({{ cate.count }})</span>
       </div>
   </div>
@@ -27,6 +27,9 @@
           }).catch(err=>{
             console.log(`fetchCategoryData出问题了!${err}`);
         });
+      },
+      jumpToDetail(cate) {
+        this.$router.push(`/category/${cate}`);
       },
     },
   };

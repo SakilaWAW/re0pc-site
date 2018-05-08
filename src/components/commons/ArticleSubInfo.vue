@@ -1,7 +1,9 @@
 <template>
   <div class="article-sub-info">
     <span class="right-sap-line">发表于{{ article.createdAt }}</span>
-    <span class="ais-type right-sap-line">分类于<a href="#" class="ais-type-text">{{ article.type }}</a></span>
+    <span class="ais-type right-sap-line">
+      分类于<span @click="jumpToCategory(article.type)" class="ais-type-text">{{ article.type }}</span>
+    </span>
     <span>阅读次数 {{ article.count }}</span>
   </div>
 </template>
@@ -12,6 +14,11 @@
     props: [
       'article',
     ],
+    methods: {
+      jumpToCategory(cate) {
+        this.$router.push(`/category/${cate}`);
+      },
+    },
   };
 </script>
 
@@ -43,5 +50,6 @@
   }
   .ais-type-text:hover {
     color: grey;
+    cursor: pointer;
   }
 </style>
