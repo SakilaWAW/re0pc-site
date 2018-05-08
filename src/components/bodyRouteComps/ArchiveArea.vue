@@ -1,10 +1,8 @@
 <template>
   <div class="archive-area">
-    <div class="ara-summary"><i class="iconfont summary-point">&#xe608;</i>Good！你已经完成了{{ archive.total }}篇博客,继续努力！</div>
+    <div class="ara-summary">Good！你已经完成了{{ archive.total }}篇博客,继续努力！</div>
     <div class="year-summary" v-for="(yearSummary,idx) in archive.articles" :key="idx">
-      <div class="ys-year">
-        <i class="iconfont year-point">&#xe608;</i>{{ yearSummary.year }}
-      </div>
+      <div class="ys-year">{{ yearSummary.year }}</div>
       <div v-for="article in yearSummary.articles">
         <archive-item :article="article"></archive-item>
       </div>
@@ -44,8 +42,19 @@
 <style lang="scss" scoped>
   @import '../../assets/css/global';
   .archive-area {
-    border-left: 5px solid $light-grey;
     padding-bottom: 5px;
+    position: relative;
+  }
+  .archive-area::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    height: 100%;
+    width: 3px;
+    background: $light-grey;
+    transform: translateX(-50%);
   }
   .ara-summary, .ys-year {
     padding-left: 20px;
@@ -54,23 +63,28 @@
     font-size: 16px;
     position: relative;
   }
+  .ara-summary::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-50%);
+    border: 6px solid darkgrey;
+    border-radius: 6px;
+  }
   .ys-year {
     font-size: 22px;
     margin: 50px 0 40px 0;
     font-weight: bold;
     position: relative;
   }
-  .summary-point {
-    font-size: 28px;
-    left: -17px;
-    top: -10px;
+  .ys-year::after {
+    content: "";
     position: absolute;
-    color: darkgrey;
-  }
-  .year-point {
-    font-size: 20px;
-    left: -13px;
-    position: absolute;
-    color: darkgrey;
+    top: 50%;
+    left: 0;
+    transform: translateX(-50%) translateY(-50%);
+    border: 4px solid darkgrey;
+    border-radius: 4px;
   }
 </style>

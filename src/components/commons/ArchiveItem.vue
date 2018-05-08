@@ -1,6 +1,5 @@
 <template>
   <div class="archive-item" :class="{'border-grey':isHover}">
-    <i class="iconfont article-point time-point" :class="{'point-grey': isHover}">&#xe608;</i>
     <span class="ysa-time">{{ article.createdAt }}</span>
     <span class="ysa-title"
           @mouseenter="isHover=true"
@@ -29,24 +28,9 @@
 </script>
 
 <style lang="scss" scoped>
-  .article-point {
-    font-size: 16px;
-    left: -11px;
-    top: 25px;
-  }
-  .time-point {
-    position: absolute;
-    color: darkgrey;
-  }
   .ysa-time {
     margin-right: 10px;
     font-size: 14px;
-  }
-  .border-grey {
-    border-bottom-color: grey!important;
-  }
-  .point-grey {
-    color: grey;
   }
   .cursor-pointer {
     cursor: pointer;
@@ -57,5 +41,20 @@
     border-bottom: 1px dashed darkgrey;
     padding: 20px 0 20px 20px;
     position: relative;
+  }
+  .archive-item::after {
+    content: " ";
+    position: absolute;
+    border: 3px solid darkgrey;
+    border-radius: 3px;
+    left: 0;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  .border-grey {
+    border-bottom-color: grey!important;
+  }
+  .border-grey::after {
+    border-color: grey;
   }
 </style>
