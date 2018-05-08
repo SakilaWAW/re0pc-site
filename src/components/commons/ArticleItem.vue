@@ -1,5 +1,5 @@
 <template>
-  <div class="archive-item" :class="{'border-grey':isHover}">
+  <div class="article-item" :class="{'border-grey':isHover}">
     <span class="ysa-time">{{ article.createdAt }}</span>
     <span class="ysa-title"
           @mouseenter="isHover=true"
@@ -10,7 +10,7 @@
 
 <script>
   export default {
-    name: 'archive-item',
+    name: 'article-item',
     props: [
       'article',
     ],
@@ -35,14 +35,14 @@
   .cursor-pointer {
     cursor: pointer;
   }
-  .archive-item {
+  .article-item {
     margin-bottom: 10px;
     font-size: 16px;
     border-bottom: 1px dashed darkgrey;
     padding: 20px 0 20px 20px;
     position: relative;
   }
-  .archive-item::after {
+  .article-item::after {
     content: " ";
     position: absolute;
     border: 3px solid darkgrey;

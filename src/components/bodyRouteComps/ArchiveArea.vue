@@ -4,19 +4,19 @@
     <div class="year-summary" v-for="(yearSummary,idx) in archive.articles" :key="idx">
       <div class="ys-year">{{ yearSummary.year }}</div>
       <div v-for="article in yearSummary.articles">
-        <archive-item :article="article"></archive-item>
+        <article-item :article="article"></article-item>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import ArchiveItem from '../commons/ArchiveItem';
+  import ArticleItem from '../commons/ArticleItem';
 
   export default {
     name: 'archive-area',
     components: {
-      ArchiveItem,
+      ArticleItem,
     },
     created() {
       if(this.archive === '') this.fetchArchive();
