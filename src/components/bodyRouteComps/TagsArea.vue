@@ -3,7 +3,9 @@
     <div class="ta-title">目前共计{{ tagData.length }}个标签</div>
     <div class="tag-bar">
       <auto-adapt-text v-for="(data,idx) in tagData" :key="idx"
-                       :size="data.count" :text="data.tag" @clickEvent="jumpToTagDetail(data.tag)"></auto-adapt-text>
+                       :size="data.count"
+                       :text="data.tag"
+                       @clickEvent="jumpToTagDetail(data.tag)"></auto-adapt-text>
     </div>
   </div>
 </template>
