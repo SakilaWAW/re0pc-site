@@ -39,7 +39,6 @@
     },
     computed: {
       isEmpty() {
-        console.log(`this.articleList===>${this.articleList}`);
         return this.articleList.length === 0;
       },
     },
