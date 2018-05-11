@@ -3,9 +3,24 @@
     <div class="header-content">
       <div class="left-container">
         <div class="logo-container hover-pointer">
-          <div class="border-line top-border"></div>
+          <transition
+            appear
+            @appear="extend"
+            @before-appear="beforeExtend">
+            <div class="border-line top-border"></div>
+          </transition>
+          <transition
+            appear
+            @before-appear="beforeSlideDown"
+            @appear="slideDownDelay500msAnimate">
           <span class="site-logo">Re0pc's Blog</span>
+          </transition>
+          <transition
+            appear
+            @appear="extend"
+            @before-appear="beforeExtend">
           <div class="border-line bottom-border"></div>
+          </transition>
         </div>
         <transition
           appear
@@ -55,11 +70,17 @@
       slideDownAnimate(el, done) {
         this.$Velocity(el,{opacity: 1, top: 0} ,{duration: 800,complete: done});
       },
+      beforeSlideDown(el) {
+        el.style.cssText = "top: -30px;opacity: 0;position: relative;";
+      },
       slideDownDelay500msAnimate(el, done) {
         this.$Velocity(el,{opacity: 1, top: 0} ,{delay: 500, duration: 1000,complete: done});
       },
-      beforeSlideDown(el) {
-        el.style.cssText = "top: -50px;opacity: 0;position: relative;";
+      beforeExtend(el) {
+        el.style.cssText = "width: 0";
+      },
+      extend(el, done) {
+        this.$Velocity(el,{width: '80%'} ,{duration: 1000,complete: done});
       },
     },
   };
