@@ -7,15 +7,24 @@
           <span class="site-logo">Re0pc's Blog</span>
           <div class="border-line bottom-border"></div>
         </div>
-        <ul class="nav-list">
-          <li v-for="(nav,idx) in navList" :key="idx"
-              class="nav"
-              @click="jumpTo(nav.route)">
-            {{ nav.txt }}
-          </li>
-        </ul>
+        <transition
+          appear
+          @before-appear="beforeSlideDown"
+          @appear="slideDownAnimate">
+          <ul class="nav-list">
+            <li v-for="(nav,idx) in navList" :key="idx"
+                class="nav"
+                @click="jumpTo(nav.route)">
+              {{ nav.txt }}
+            </li>
+          </ul>
+        </transition>
       </div>
-      <tg-search></tg-search>
+      <transition appear
+                  @before-appear="beforeSlideDown"
+                  @appear="slideDownDelay500msAnimate">
+        <tg-search></tg-search>
+      </transition>
     </div>
   </header>
 </template>
@@ -42,6 +51,15 @@
     methods: {
       jumpTo(location) {
         this.$router.push({ path: location });
+      },
+      slideDownAnimate(el, done) {
+        this.$Velocity(el,{opacity: 1, top: 0} ,{duration: 800,complete: done});
+      },
+      slideDownDelay500msAnimate(el, done) {
+        this.$Velocity(el,{opacity: 1, top: 0} ,{delay: 500, duration: 1000,complete: done});
+      },
+      beforeSlideDown(el) {
+        el.style.cssText = "top: -50px;opacity: 0;position: relative;";
       },
     },
   };

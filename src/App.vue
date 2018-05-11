@@ -19,7 +19,7 @@ export default {
   methods: {
     rtnTop() {
       const intervalId = setInterval(()=>{
-        var heightTop = document.documentElement.scrollTop || document.body.scrollTop;
+        let heightTop = document.documentElement.scrollTop || document.body.scrollTop;
         if(heightTop <= 160) {
           document.documentElement.scrollTop = document.body.scrollTop = 0;
           clearInterval(intervalId)
@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
