@@ -2,19 +2,32 @@
   <div class="archive-area">
     <div class="ara-summary">Good！你已经完成了{{ archive.total }}篇博客,继续努力！</div>
     <div class="year-summary" v-for="(yearSummary,idx) in archive.articles" :key="idx">
-      <div class="ys-year">{{ yearSummary.year }}</div>
-      <div v-for="article in yearSummary.articles">
-        <article-item :article="article"></article-item>
+      <div class="ys-year">
+        <span class="prefix-point"></span>
+        <transition appear
+                    @before-appear="beforeSlideRight"
+                    @appear="slideRight">
+          <span>{{ yearSummary.year }}</span>
+        </transition>
       </div>
+      <transition-group>
+        <div v-for="(article,idx) in yearSummary.articles" :key="idx">
+          <article-item :article="article"></article-item>
+        </div>
+      </transition-group>
     </div>
   </div>
 </template>
 
 <script>
   import ArticleItem from '../commons/ArticleItem';
+  import { archiveTransitionMethods } from '../../mixins/index';
 
   export default {
     name: 'archive-area',
+    mixins: [
+      archiveTransitionMethods,
+    ],
     components: {
       ArticleItem,
     },
@@ -78,7 +91,7 @@
     font-weight: bold;
     position: relative;
   }
-  .ys-year::after {
+  .prefix-point::after {
     content: "";
     position: absolute;
     top: 50%;

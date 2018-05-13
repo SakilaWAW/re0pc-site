@@ -25,7 +25,7 @@
         <transition
           appear
           @before-appear="beforeSlideDown"
-          @appear="slideDownAnimate">
+          @appear="slideDownDelay1000msAnimate">
           <ul class="nav-list">
             <li v-for="(nav,idx) in navList" :key="idx"
                 class="nav"
@@ -37,7 +37,7 @@
       </div>
       <transition appear
                   @before-appear="beforeSlideDown"
-                  @appear="slideDownDelay500msAnimate">
+                  @appear="slideDownDelay1000msAnimate">
         <tg-search></tg-search>
       </transition>
     </div>
@@ -46,9 +46,13 @@
 
 <script>
   import TgSearch from './TgSearch';
+  import { headTransitionMethods } from '../mixins/index';
 
   export default {
     name: 'header-with-searcher',
+    mixins: [
+      headTransitionMethods,
+    ],
     components: {
       TgSearch,
     },
@@ -66,21 +70,6 @@
     methods: {
       jumpTo(location) {
         this.$router.push({ path: location });
-      },
-      slideDownAnimate(el, done) {
-        this.$Velocity(el,{opacity: 1, top: 0} ,{duration: 800,complete: done});
-      },
-      beforeSlideDown(el) {
-        el.style.cssText = "top: -30px;opacity: 0;position: relative;";
-      },
-      slideDownDelay500msAnimate(el, done) {
-        this.$Velocity(el,{opacity: 1, top: 0} ,{delay: 500, duration: 1000,complete: done});
-      },
-      beforeExtend(el) {
-        el.style.cssText = "width: 0";
-      },
-      extend(el, done) {
-        this.$Velocity(el,{width: '80%'} ,{duration: 1000,complete: done});
       },
     },
   };

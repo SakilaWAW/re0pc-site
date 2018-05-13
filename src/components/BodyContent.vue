@@ -1,14 +1,22 @@
 <template>
   <div class="body-content">
     <div class="content-area">
-      <router-view></router-view>
+      <transition appear
+                  @before-appear="beforeSlideDown"
+                  @appear="slideDownDelay1500msAnimate">
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
+  import { bodyTransitionMethods} from '../mixins/index';
   export default {
     name: 'body-content',
+    mixins: [
+      bodyTransitionMethods,
+    ],
   };
 </script>
 
