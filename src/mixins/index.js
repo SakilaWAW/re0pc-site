@@ -38,6 +38,16 @@ let archiveTransitionMethods = {
     slideRight(el, done) {
       this.$Velocity(el, {opacity: 1, left: 0} ,{duration: 500, complete: done});
     },
+    beforeSlideDown(el) {
+      el.style.cssText = "top: -30px;opacity: 0;position: relative;";
+    },
+    slideDownDelay500msStepAnimate(el, done) {
+      const delay = 500 + el.dataset.index * 150;
+      console.log(`delay: ${delay}======`);
+      setTimeout(()=>{
+        this.$Velocity(el,{opacity: 1, top: 0} ,{ duration: 500,complete: done});
+      }, delay );
+    },
   },
 };
 

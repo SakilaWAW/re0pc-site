@@ -10,8 +10,11 @@
           <span>{{ yearSummary.year }}</span>
         </transition>
       </div>
-      <transition-group>
-        <div v-for="(article,idx) in yearSummary.articles" :key="idx">
+      <transition-group appear
+                        @before-appear="beforeSlideDown"
+                        @appear="slideDownDelay500msStepAnimate">
+        <div v-for="(article,idx) in yearSummary.articles" :key="idx"
+             :data-index="idx">
           <article-item :article="article"></article-item>
         </div>
       </transition-group>
