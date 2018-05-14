@@ -16,7 +16,9 @@
       ArticleSubInfo,
     },
     created() {
-      if(this.$store.state.cur_article === "") this.fetchData();
+      if(this.$store.state.cur_article === "" || this.$store.state.cur_article.id !== this.articleId) {
+        this.fetchData();
+      }
       this.updateCount();
     },
     data() {
