@@ -3,6 +3,7 @@
     <h2 class="aa-title">{{ article.title }}</h2>
     <article-sub-info :article="article" class="aa-sub-info"></article-sub-info>
     <div class="aa-content markdown-body" v-html="markedTxt"></div>
+    <catalog-bar></catalog-bar>
   </div>
 </template>
 
@@ -10,21 +11,25 @@
   import ArticleSubInfo from '../commons/ArticleSubInfo';
   import marked from 'marked';
   import 'highlight.js/styles/github-gist.css';
+  import CataNode from '../../utils/catalogNode';
+  import CatalogBar from '../commons/CatalogBar';
 
   export default {
     name: 'article-area',
     components: {
       ArticleSubInfo,
+      CatalogBar,
     },
     created() {
       if(this.$store.state.cur_article === "" || this.$store.state.cur_article.id !== this.articleId) {
         this.fetchData();
       }
       this.updateCount();
-      let hljs = require('highlight.js');
 
+      let hljs = require('highlight.js');
       let diyRender = new marked.Renderer();
       diyRender.heading = (text, level) => {
+        this.catalog.push(new CataNode(text, level));
         return `<h${level} id="${text}">${text}</h${level}>`
       };
 
@@ -49,7 +54,7 @@
     data() {
       return {
         article: this.$store.state.cur_article,
-        catalog: '',
+        catalog: [],
       };
     },
     methods: {
