@@ -43,7 +43,6 @@ let archiveTransitionMethods = {
     },
     slideDownDelay500msStepAnimate(el, done) {
       const delay = 500 + el.dataset.index * 150;
-      console.log(`delay: ${delay}======`);
       setTimeout(()=>{
         this.$Velocity(el,{opacity: 1, top: 0} ,{ duration: 500,complete: done});
       }, delay );

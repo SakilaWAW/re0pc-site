@@ -24,7 +24,7 @@
       let hljs = require('highlight.js');
 
       let diyRender = new marked.Renderer();
-      diyRender.heading = (text, level) =>{
+      diyRender.heading = (text, level) => {
         return `<h${level} id="${text}">${text}</h${level}>`
       };
 
@@ -65,7 +65,7 @@
       updateCount() {
         this.$axios.get(`http://127.0.0.1:3000/read/${this.articleId}`)
           .then(res=>{
-            console.log(`返回code为${res.status}`);
+
           }).catch(err=>{
             console.log(err);
         });
