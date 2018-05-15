@@ -76,7 +76,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../assets/css/global';
+  @import '../css/global';
 
   @media screen and (min-width: $content-width) {
     .header-content {

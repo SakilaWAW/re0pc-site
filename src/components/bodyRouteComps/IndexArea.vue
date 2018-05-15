@@ -15,7 +15,7 @@
   import marked from 'marked';
   import Vue from 'vue';
   import 'github-markdown-css';
-  import Highlight from '../../assets/js/highlightPlugin';
+  import Highlight from '../../utils/highlightPlugin';
   import ArticleIntro from '../commons/ArticleIntro';
 
   Vue.use(Highlight);

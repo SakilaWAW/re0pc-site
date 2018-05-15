@@ -56,7 +56,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../../assets/css/global';
+  @import '../../css/global';
   .archive-area {
     padding-bottom: 5px;
     position: relative;

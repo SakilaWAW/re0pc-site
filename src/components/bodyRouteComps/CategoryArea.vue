@@ -36,7 +36,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../../assets/css/global';
+  @import '../../css/global';
   .ca-title {
     text-align: center;
     font-size: 17px;

@@ -19,7 +19,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../assets/css/global';
+  @import '../css/global';
 
   .tg-search {
     border-bottom: 1px solid $light-text-grey;
