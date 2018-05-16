@@ -3,18 +3,24 @@
     <header-with-searcher></header-with-searcher>
     <body-content></body-content>
     <i class="el-icon-caret-top rtn-top-btn" @click="rtnTop"></i>
+    <div class="side-menu-btn line-decorator-base"
+         :class="this.$store.state.side_menu_expand?'line-decorator-selected':''"
+         @click="toggleSideMenu"></div>
+    <catalog-bar></catalog-bar>
   </div>
 </template>
 
 <script>
 import HeaderWithSearcher from './components/HeaderWithSearcher';
 import BodyContent from './components/BodyContent';
+import CatalogBar from './components/commons/CatalogBar';
 
 export default {
   name: 'App',
   components: {
     HeaderWithSearcher,
     BodyContent,
+    CatalogBar,
   },
   methods: {
     rtnTop() {
@@ -29,6 +35,9 @@ export default {
           document.body.scrollTop -= 160;
         }
       },20);
+    },
+    toggleSideMenu() {
+      this.$store.commit('setSideMenuTo', { isExpand: !this.$store.state.side_menu_expand });
     },
   },
 }
@@ -52,9 +61,47 @@ export default {
     background: black;
     color: white;
     font-size: 22px;
+    z-index: 999;
   }
   .rtn-top-btn:hover {
     cursor: pointer;
+  }
+  .side-menu-btn {
+    position: fixed;
+    bottom: 70px;
+    right: 40px;
+    background: black;
+    width: 23px;
+    height: 23px;
+    z-index: 999;
+  }
+  .side-menu-btn:hover {
+    cursor: pointer;
+  }
+  .line-decorator-base::after,.line-decorator-base::before {
+    content: "";
+    position: absolute;
+    background: white;
+    height: 2px;
+    width: 60%;
+    transition: all .5s;
+    left: 20%;
+  }
+  .line-decorator-base::before {
+    top: 30%;
+  }
+  .line-decorator-base::after {
+    bottom: 30%;
+  }
+  .line-decorator-selected::after {
+    bottom: 50%;
+    transform-origin:center 70%;
+    transform: rotate(-135deg);
+  }
+  .line-decorator-selected::before {
+    top: 50%;
+    transform-origin:center 30%;
+    transform: rotate(135deg);
   }
   @font-face {
     font-family: 'iconfont';  /* project id 597267 */

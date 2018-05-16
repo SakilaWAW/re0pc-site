@@ -9,11 +9,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    cur_article: ''
+    cur_article: '',
+    side_menu_expand: false,
   },
   mutations: {
     setArticle (state, payload) {
       state.cur_article = payload.article;
-    }
+    },
+    setSideMenuTo(state, payload) {
+      state.side_menu_expand = payload.isExpand;
+    },
   }
 });

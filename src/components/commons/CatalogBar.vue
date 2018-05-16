@@ -1,6 +1,6 @@
 <template>
   <transition name="expand">
-    <div class="catalog-bar" v-show="isShow">
+    <div class="catalog-bar" v-show="isExpand">
 
     </div>
   </transition>
@@ -9,10 +9,10 @@
 <script>
   export default {
     name: 'catalog-bar',
-    data() {
-      return {
-        isShow: false,
-      };
+    computed: {
+      isExpand() {
+        return this.$store.state.side_menu_expand;
+      }
     },
   };
 </script>
@@ -26,5 +26,9 @@
     height: 100%;
     width: 320px;
     background: $sidebar-dark-grey;
+    transition: all .5s;
+  }
+  .expand-enter, .expand-leave-to {
+    transform: translateX(320px);
   }
 </style>
