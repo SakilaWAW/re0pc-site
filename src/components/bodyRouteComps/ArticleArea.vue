@@ -21,43 +21,6 @@
         this.fetchData();
       }
       this.updateCount();
-
-      class CataNode{
-        constructor(text, level) {
-          this.text = text;
-          this.level = level;
-        }
-        get lv() {
-          return this.level;
-        }
-        get content() {
-          return this.text;
-        }
-      }
-      let hljs = require('highlight.js');
-      let diyRender = new marked.Renderer();
-      diyRender.heading = (text, level) => {
-        this.catalog.push(new CataNode(text, level));
-        return `<h${level} id="${text}">${text}</h${level}>`
-      };
-
-      marked.setOptions({
-        renderer: diyRender,
-        gfm: true,
-        tables: true,
-        breaks: false,
-        pedantic: false,
-        sanitize: false,
-        smartLists: true,
-        smartypants: false,
-        highlight: function (code, lang) {
-          if (lang && hljs.getLanguage(lang)) {
-            return hljs.highlight(lang, code, true).value;
-          } else {
-            return hljs.highlightAuto(code).value;
-          }
-        }
-      });
     },
     data() {
       return {
@@ -86,7 +49,48 @@
     },
     computed: {
       markedTxt() {
-        if(this.article !== "") return marked(this.article.content);
+        if(this.article !== "") {
+          class CataNode{
+            constructor(text, level) {
+              this.text = text;
+              this.level = level;
+            }
+            get lv() {
+              return this.level;
+            }
+            get content() {
+              return this.text;
+            }
+          }
+          let hljs = require('highlight.js');
+          let diyRender = new marked.Renderer();
+          diyRender.heading = (text, level) => {
+            this.catalog.push(new CataNode(text, level));
+            return `<h${level} id="${text}">${text}</h${level}>`;
+          };
+          const res = marked(
+            this.article.content,
+            {
+              renderer: diyRender,
+              gfm: true,
+              tables: true,
+              breaks: false,
+              pedantic: false,
+              sanitize: false,
+              smartLists: true,
+              smartypants: false,
+              highlight: function (code, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                  return hljs.highlight(lang, code, true).value;
+                } else {
+                  return hljs.highlightAuto(code).value;
+                }
+              }
+            },
+          );
+          this.$store.state.side_menu_expand = true;
+          return res;
+        }
       },
       articleId() {
         return this.$route.params.articleId;
