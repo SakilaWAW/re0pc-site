@@ -1,10 +1,10 @@
 <template>
-  <li class="nav-menu" @mouseenter="isHover=true" @mouseleave="isHover=false"
+  <li class="nav-menu" @mouseenter="isHover=true" @mouseleave="isHover=false" @click="click"
       :style="{ color: isHover?txtActiveColor:txtColor,
           'font-size': `${textSize}px`,
            background: isActive?activeBgColor:(isHover?hoverBgColor:bgColor),
-               cursor: 'pointer'}"
-      :class="{}">
+               cursor: 'pointer',
+      'border-bottom': isActive?`${uderlineColor} 1px solid`:'none'}">
     {{ title }}
   </li>
 </template>
@@ -16,16 +16,22 @@
       'title',
       'text-color',
       'text-active-color',
-      'background-color',//
-      'active-background-color',//
-      'hover-background-color',//
-      'font-size',//
+      'background-color',
+      'active-background-color',
+      'hover-background-color',
+      'font-size',
       'underline-color',
-      'active',//
+      'active',
+      'index',
     ],
     data() {
       return {
         isHover: false,
+      }
+    },
+    methods: {
+      click() {
+        this.$emit('select', this.index);
       }
     },
     computed: {
@@ -36,7 +42,7 @@
         return this.textColor || '#595959';
       },
       txtActiveColor() {
-        return this.textActiveColor || this.txtColor;
+        return this.textActiveColor || 'black';
       },
       bgColor() {
         return this.backgroundColor || 'white';
@@ -50,9 +56,18 @@
       textSize() {
         return this.fontSize || 14;
       },
+      uderlineColor() {
+        return this.underlineColor || 'black';
+      },
     },
   };
 </script>
 
 <style lang="scss" scoped>
+  .nav-menu {
+    list-style-type: none;
+    padding: 5px 0;
+    margin: 5px 10px;
+    display: inline-block;
+  }
 </style>

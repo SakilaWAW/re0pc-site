@@ -4,7 +4,8 @@
       <ul class="nav-head">
         <nav-menu v-for="(page,idx) in menuPageInfo" :key="idx"
                   :class="page.cls"
-                  :title="page.title">
+                  :title="page.title"
+                  :index="idx" @select="handleSelect">
         </nav-menu>
       </ul>
     </div>
@@ -36,8 +37,8 @@
       }
     },
     methods: {
-      handleSelect(key, keyPath) {
-        console.log(`key:${key}==keyPath:${keyPath}`);
+      handleSelect(index) {
+        console.log(`key:${index}`);
       },
     },
   };
@@ -53,8 +54,12 @@
     width: 320px;
     background: white;
     transition: all .5s;
+    text-align: center;
   }
   .expand-enter, .expand-leave-to {
     transform: translateX(320px);
+  }
+  .nav-head {
+    display: inline-block;
   }
 </style>
