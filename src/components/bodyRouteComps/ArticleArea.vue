@@ -25,7 +25,6 @@
     data() {
       return {
         article: this.$store.state.cur_article,
-        catalog: [],
       };
     },
     methods: {
@@ -46,6 +45,20 @@
             console.log(err);
         });
       },
+      addCataStep(cata) {
+        console.log(`addCataStep==>${JSON.stringify(cata)}`);
+        let s = 0;
+        for(let i = 0; i < cata.length; i++ ) {
+          let catalog = cata[i];
+          if ( i > 0) {
+            if(cata[i].level > cata[i-1].level) s += 1;
+            else if(cata[i].level < cata[i-1].level) s -= 1;
+          }
+          catalog.step = s;
+        }
+        console.log(`addCataStep==>${JSON.stringify(cata)}`);
+        return cata;
+      }
     },
     computed: {
       markedTxt() {
@@ -62,10 +75,11 @@
               return this.text;
             }
           }
+          let catalog = [];
           let hljs = require('highlight.js');
           let diyRender = new marked.Renderer();
           diyRender.heading = (text, level) => {
-            this.catalog.push(new CataNode(text, level));
+            catalog.push(new CataNode(text, level));
             return `<h${level} id="${text}">${text}</h${level}>`;
           };
           const res = marked(
@@ -88,6 +102,7 @@
               }
             },
           );
+          this.$store.commit('setCatalog', { catalog: this.addCataStep(catalog) });
           this.$store.state.side_menu_expand = true;
           return res;
         }
