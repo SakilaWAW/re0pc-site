@@ -14,6 +14,7 @@
 import HeaderWithSearcher from './components/HeaderWithSearcher';
 import BodyContent from './components/BodyContent';
 import CatalogBar from './components/commons/CatalogBar';
+import SelfInfoPage from './components/commons/SelfInfoPage';
 
 export default {
   name: 'App',
@@ -21,6 +22,9 @@ export default {
     HeaderWithSearcher,
     BodyContent,
     CatalogBar,
+  },
+  created() {
+    this.$store.commit('pushSideBarPage', { page: { title: '站点预览', index: 'zdyl', pageComponent: SelfInfoPage }});
   },
   methods: {
     rtnTop() {

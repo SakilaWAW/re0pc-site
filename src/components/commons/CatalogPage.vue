@@ -1,21 +1,16 @@
 <template>
   <ul class="catalog-page">
-    <li class="cata-item" v-for="(cata,idx) in cataData" :key="idx"
+    <li class="cata-item" v-for="(cata,idx) in $store.state.catalog" :key="idx"
         :style="{'padding-left': `${30+cata.step*20}px`}" @click="scrollTo(cata.text)">
       {{ cata.text }}
     </li>
-    <li class="nothing-to-show" v-if="cataData.length===0">此文章无目录</li>
+    <li class="nothing-to-show" v-if="$store.state.catalog.length===0">此文章无目录</li>
   </ul>
 </template>
 
 <script>
   export default {
     name: 'catalog-page',
-    data() {
-      return {
-        cataData: this.$store.state.catalog,
-      };
-    },
     methods: {
       scrollTo(id) {
         document.getElementById(id).scrollIntoView();

@@ -16,9 +16,7 @@
 
 <script>
   import NavMenuItem from './NavMenu/NavMenuItem';
-  import CatalogBar from '../commons/CatalogPage';
-  import SelfInfoPage from '../commons/SelfInfoPage';
-  import NavMenu from './NavMenu/NavMenu'
+  import NavMenu from './NavMenu/NavMenu';
 
   export default {
     name: 'catalog-bar',
@@ -29,13 +27,12 @@
     data() {
       return {
         activeIndex: 'wzml',
-        menuPageInfo: [
-          { title: '文章目录', index: 'wzml', pageComponent: CatalogBar },
-          { title: '站点预览', index: 'zdyl', pageComponent: SelfInfoPage },
-        ],
       };
     },
     computed: {
+      menuPageInfo() {
+        return this.$store.state.sidebar_pages;
+      },
       isExpand() {
         return this.$store.state.side_menu_expand;
       },
@@ -43,12 +40,12 @@
         for (let i = 0; i < this.menuPageInfo.length; i++) {
           if(this.menuPageInfo[i].index === this.activeIndex) return this.menuPageInfo[i].pageComponent;
         }
+        if(this.menuPageInfo.length > 0) return this.menuPageInfo[0].pageComponent;
       },
     },
     methods: {
       handleSelect(index) {
         this.activeIndex = index;
-        console.log(`已将activeIndex设置为${this.activeIndex}`);
       },
     },
   };

@@ -10,6 +10,7 @@
   import ArticleSubInfo from '../commons/ArticleSubInfo';
   import marked from 'marked';
   import 'highlight.js/styles/github-gist.css';
+  import CatalogPage from '../commons/CatalogPage';
 
   export default {
     name: 'article-area',
@@ -21,6 +22,11 @@
         this.fetchData();
       }
       this.updateCount();
+      this.$store.commit('unshiftSideBarPage', { page: { title: '文章目录', index: 'wzml', pageComponent: CatalogPage }});
+    },
+    beforeDestroy() {
+      this.$store.commit('setSideMenuTo', {isExpand: false});
+      this.$store.commit('shiftSideBarPage');
     },
     data() {
       return {
@@ -46,7 +52,6 @@
         });
       },
       addCataStep(cata) {
-        console.log(`addCataStep==>${JSON.stringify(cata)}`);
         let s = 0;
         for(let i = 0; i < cata.length; i++ ) {
           let catalog = cata[i];
@@ -56,7 +61,6 @@
           }
           catalog.step = s;
         }
-        console.log(`addCataStep==>${JSON.stringify(cata)}`);
         return cata;
       }
     },
@@ -103,7 +107,7 @@
             },
           );
           this.$store.commit('setCatalog', { catalog: this.addCataStep(catalog) });
-          this.$store.state.side_menu_expand = true;
+          this.$store.commit('setSideMenuTo', {isExpand: true});
           return res;
         }
       },

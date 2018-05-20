@@ -12,6 +12,7 @@ export default new Vuex.Store({
     cur_article: '',
     side_menu_expand: false,
     catalog: [],
+    sidebar_pages: [],
   },
   mutations: {
     setArticle (state, payload) {
@@ -22,6 +23,18 @@ export default new Vuex.Store({
     },
     setCatalog(state, payload) {
       state.catalog = payload.catalog;
-    }
+    },
+    pushSideBarPage(state, payload) {
+      state.sidebar_pages.push(payload.page);
+    },
+    popSideBarPage(state) {
+      state.sidebar_pages.pop();
+    },
+    unshiftSideBarPage(state, payload) {
+      state.sidebar_pages.unshift(payload.page);
+    },
+    shiftSideBarPage(state) {
+      state.sidebar_pages.shift();
+    },
   }
 });

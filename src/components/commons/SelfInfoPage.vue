@@ -1,6 +1,6 @@
 <template>
   <div class="self-info-page">
-
+    self-info-page
   </div>
 </template>
 
@@ -11,5 +11,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .self-info-page {
+    color: white;
+  }
 </style>
