@@ -11,6 +11,7 @@ export default new Vuex.Store({
   state: {
     cur_article: '',
     side_menu_expand: false,
+    catalog: [],
   },
   mutations: {
     setArticle (state, payload) {
@@ -19,5 +20,8 @@ export default new Vuex.Store({
     setSideMenuTo(state, payload) {
       state.side_menu_expand = payload.isExpand;
     },
+    setCatalog(state, payload) {
+      state.catalog = payload.catalog;
+    }
   }
 });
