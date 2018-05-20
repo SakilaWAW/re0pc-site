@@ -1,7 +1,8 @@
 <template>
   <ul class="catalog-page">
-    <li class="cata-item" v-for="(cata,idx) in cataData" :key="idx">
-      <a class="cata-href" :href="`#${cata.text}`" :style="{'padding-left': `${cata.step*20}px`}">{{ cata.text }}</a>
+    <li class="cata-item" v-for="(cata,idx) in cataData" :key="idx"
+        :style="{'padding-left': `${30+cata.step*20}px`}" @click="scrollTo(cata.text)">
+      {{ cata.text }}
     </li>
     <li class="nothing-to-show" v-if="cataData.length===0">此文章无目录</li>
   </ul>
@@ -15,6 +16,11 @@
         cataData: this.$store.state.catalog,
       };
     },
+    methods: {
+      scrollTo(id) {
+        document.getElementById(id).scrollIntoView();
+      },
+    }
   };
 </script>
 
@@ -24,17 +30,15 @@
     list-style-type: none;
   }
   .cata-item {
-    padding-left: 30px;
-    text-align: left;
-  }
-  .cata-href {
     color: $high-light-text-grey;
     font-size: 14px;
     margin: 2px 0;
-    display: inline-block;
+    text-align: left;
+    text-decoration: underline;
   }
-  .cata-href:hover {
+  .cata-item:hover {
     color: white;
+    cursor: pointer;
   }
   .nothing-to-show {
     color: $high-light-text-grey;
