@@ -111,6 +111,7 @@
 
   .nav-list {
     display: inline-block;
+    margin-left: 40px;
   }
 
   .nav-list li{
