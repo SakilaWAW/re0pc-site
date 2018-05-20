@@ -1,8 +1,8 @@
 <template>
-  <li class="nav-menu" @mouseenter="isHover=true" @mouseleave="isHover=false" @click="click"
-      :style="{ color: isHover?txtActiveColor:txtColor,
+  <li class="nav-menu-item" @mouseenter="isHover=true" @mouseleave="isHover=false" @click="click"
+      :style="{ color: isActive?txtActiveColor:isHover?txtHoverColor:txtColor,
           'font-size': `${textSize}px`,
-           background: isActive?activeBgColor:(isHover?hoverBgColor:bgColor),
+           background: isActive?activeBgColor:isHover?hoverBgColor:bgColor,
                cursor: 'pointer',
       'border-bottom': isActive?`${uderlineColor} 1px solid`:'none'}">
     {{ title }}
@@ -11,17 +11,18 @@
 
 <script>
   export default {
-    name: 'nav-menu',
+    name: 'nav-menu-item',
     props: [
       'title',
       'text-color',
       'text-active-color',
+      'text-hover-color',
       'background-color',
       'active-background-color',
       'hover-background-color',
       'font-size',
       'underline-color',
-      'active',
+      'isActive',
       'index',
     ],
     data() {
@@ -35,14 +36,14 @@
       }
     },
     computed: {
-      isActive() {
-        return this.active === 'active';
-      },
       txtColor() {
         return this.textColor || '#595959';
       },
       txtActiveColor() {
-        return this.textActiveColor || 'black';
+        return this.textActiveColor || this.txtColor;
+      },
+      txtHoverColor() {
+        return this.textHoverColor || this.txtColor;
       },
       bgColor() {
         return this.backgroundColor || 'white';
@@ -64,7 +65,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .nav-menu {
+  .nav-menu-item {
     list-style-type: none;
     padding: 5px 0;
     margin: 5px 10px;
