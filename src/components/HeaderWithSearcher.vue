@@ -81,19 +81,27 @@
 <style lang="scss" scoped>
   @import '../css/global';
 
-  @media screen and (min-width: $content-width) {
+  @media screen and (min-width: 768px) {
     .header-content-wide {
+      display: block;
       width: $content-width;
+    }
+    .header-content-narrow {
+      display: none;
     }
   }
 
-  @media screen and (max-width: $content-width) {
+  @media screen and (max-width: 767px) {
     .header-content-wide {
-      width: 100%;
+      display: none;
+    }
+    .header-content-narrow {
+      display: block;
     }
   }
   .header-with-searcher {
     background: $light-grey;
+    padding: 30px 10px;
   }
 
   .logo-container {
@@ -108,11 +116,9 @@
   .header-content-wide {
     height: 80px;
     margin: 0 auto;
-    padding: 30px 0;
     justify-content: space-between;
     display: flex;
     align-items: center;
-    box-sizing: border-box;
   }
 
   .nav-list {

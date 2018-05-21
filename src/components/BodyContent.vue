@@ -21,12 +21,13 @@
 </script>
 
 <style lang="scss" scoped>
-  @media screen and (min-width: 900px) {
+  @import '../css/global';
+  @media screen and (min-width: 768px) {
     .content-area {
-      width: 900px;
+      width: $content-width;
     }
   }
-  @media screen and (max-width: 899px) {
+  @media screen and (max-width: 767px) {
     .content-area {
       width: 100%;
     }

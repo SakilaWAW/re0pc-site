@@ -26,7 +26,6 @@
   }
   .s-input {
     padding: 3px;
-    box-sizing: border-box;
     border: none;
     outline: none;
     background: $light-grey;
