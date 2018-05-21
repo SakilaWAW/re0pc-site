@@ -1,6 +1,6 @@
 <template>
   <header class="header-with-searcher">
-    <div class="header-content">
+    <div class="header-content-wide">
       <div class="left-container">
         <div class="logo-container hover-pointer">
           <transition
@@ -41,6 +41,9 @@
         <tg-search></tg-search>
       </transition>
     </div>
+    <div class="header-content-narrow">
+      <span class="site-logo narrow-logo">Re0pc's Blog</span>
+    </div>
   </header>
 </template>
 
@@ -79,13 +82,13 @@
   @import '../css/global';
 
   @media screen and (min-width: $content-width) {
-    .header-content {
+    .header-content-wide {
       width: $content-width;
     }
   }
 
-  @media screen and (max-width: 899px) {
-    .header-content {
+  @media screen and (max-width: $content-width) {
+    .header-content-wide {
       width: 100%;
     }
   }
@@ -94,19 +97,22 @@
   }
 
   .logo-container {
-    font-size: 20px;
-    font-weight: bold;
     display: inline-block;
     position: relative;
   }
+  .site-logo {
+    font-size: 20px;
+    font-weight: bold;
+  }
 
-  .header-content {
+  .header-content-wide {
     height: 80px;
     margin: 0 auto;
     padding: 30px 0;
     justify-content: space-between;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
   }
 
   .nav-list {
@@ -147,5 +153,13 @@
   .bottom-border {
     bottom: -8px;
     right: 10%;
+  }
+  //narrow
+  .header-content-narrow {
+    height: 60px;
+  }
+  .narrow-logo {
+    margin: 15px 25px;
+    display: inline-block;
   }
 </style>

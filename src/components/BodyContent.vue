@@ -34,5 +34,6 @@
   .content-area {
     margin: 0 auto;
     padding: 80px 5px;
+    box-sizing: border-box;
   }
 </style>

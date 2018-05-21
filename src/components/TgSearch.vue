@@ -23,10 +23,10 @@
 
   .tg-search {
     border-bottom: 1px solid $light-text-grey;
-
   }
   .s-input {
     padding: 3px;
+    box-sizing: border-box;
     border: none;
     outline: none;
     background: $light-grey;
