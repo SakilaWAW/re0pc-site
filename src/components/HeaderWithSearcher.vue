@@ -42,7 +42,25 @@
       </transition>
     </div>
     <div class="header-content-narrow">
-      <span @click="jumpTo('/')" class="site-logo narrow-logo hover-pointer">Re0pc's Blog</span>
+      <div class="header-content-narrow-container">
+        <span @click="jumpTo('/')" class="site-logo narrow-logo hover-pointer">Re0pc's Blog</span>
+        <div class="three-line-btn hover-pointer"
+             :style="{outline: isMenuExpand?`2px solid #0002`:'none'}"
+             @click="isMenuExpand=!isMenuExpand">
+          <div class="three-line"></div>
+        </div>
+      </div>
+      <transition name="expand">
+        <div class="expand-header-menu-container" v-show="isMenuExpand">
+          <ul class="expand-header-menu">
+            <li v-for="(nav,idx) in navList" :key="idx" class="expand-menu-item"
+                @click="jumpTo(nav.route)">
+              {{ nav.txt }}
+            </li>
+          </ul>
+          <tg-search class="expand-tg-search"></tg-search>
+        </div>
+      </transition>
     </div>
   </header>
 </template>
@@ -68,6 +86,7 @@
           { txt: '标签', route: '/tags' },
           { txt: '关于', route: '/about' },
         ],
+        isMenuExpand: false,
       };
     },
     methods: {
@@ -96,7 +115,7 @@
       display: none!important;
     }
     .header-content-narrow {
-      display: flex;
+      display: block;
     }
   }
   .header-with-searcher {
@@ -162,14 +181,68 @@
     right: 10%;
   }
   //narrow
-  .header-content-narrow {
+  .header-content-narrow-container {
     height: 60px;
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
+    box-sizing: border-box;
   }
   .narrow-logo {
     display: inline-block;
+  }
+  .three-line-btn {
+    height: 30px;
+    width: 30px;
+    padding: 7px 5px;
+    box-sizing: border-box;
+  }
+  .three-line {
+    border-top: 2px solid $dark-text-grey;
+    border-bottom: 2px solid $dark-text-grey;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .three-line::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: $dark-text-grey;
+  }
+  .expand-header-menu-container {
+    border-top: 1px solid $dark-grey;
+    border-bottom: 1px solid $dark-grey;
+    overflow-y: hidden;
+  }
+  .expand-header-menu {
+    margin: 5px 0;
+  }
+  .expand-menu-item {
+    color: $light-text-grey;
+    font-size: 15px;
+    padding: 5px 15px;
+  }
+  .expand-menu-item:hover {
+    background: $dark-grey;
+    cursor: pointer;
+  }
+  .expand-enter, .expand-leave-to {
+    max-height: 0;
+  }
+  .expand-enter-active, .expand-leave-active {
+    transition: max-height ease-in-out .3s;
+  }
+  .expand-enter-to, .expand-leave {
+    max-height: 200px;
+  }
+  .expand-tg-search {
+    margin: 0 15px 10px 15px;
   }
 </style>
