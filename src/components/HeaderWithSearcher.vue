@@ -13,7 +13,7 @@
             appear
             @before-appear="beforeSlideDown"
             @appear="slideDownDelay500msAnimate">
-          <span class="site-logo">Re0pc's Blog</span>
+          <span @click="jumpTo('/')" class="site-logo">Re0pc's Blog</span>
           </transition>
           <transition
             appear
@@ -42,7 +42,7 @@
       </transition>
     </div>
     <div class="header-content-narrow">
-      <span class="site-logo narrow-logo">Re0pc's Blog</span>
+      <span @click="jumpTo('/')" class="site-logo narrow-logo hover-pointer">Re0pc's Blog</span>
     </div>
   </header>
 </template>
@@ -83,25 +83,24 @@
 
   @media screen and (min-width: 768px) {
     .header-content-wide {
-      display: block;
+      display: flex;
       width: $content-width;
     }
     .header-content-narrow {
-      display: none;
+      display: none!important;
     }
   }
 
   @media screen and (max-width: 767px) {
     .header-content-wide {
-      display: none;
+      display: none!important;
     }
     .header-content-narrow {
-      display: block;
+      display: flex;
     }
   }
   .header-with-searcher {
     background: $light-grey;
-    padding: 30px 10px;
   }
 
   .logo-container {
@@ -114,11 +113,13 @@
   }
 
   .header-content-wide {
-    height: 80px;
+    height: 140px;
     margin: 0 auto;
+    padding: 30px 10px;
     justify-content: space-between;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
   }
 
   .nav-list {
@@ -163,9 +164,12 @@
   //narrow
   .header-content-narrow {
     height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
   }
   .narrow-logo {
-    margin: 15px 25px;
     display: inline-block;
   }
 </style>
