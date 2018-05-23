@@ -36,7 +36,7 @@
   .right-sap-line::after {
     top: 1px;
     right: -7px;
-    z-index: 1;
+    z-index: -1;
     position: absolute;
     content: "";
     height: 12px;
