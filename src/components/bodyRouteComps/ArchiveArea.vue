@@ -44,7 +44,7 @@
     },
     methods: {
       fetchArchive() {
-        this.$axios.get('http://127.0.0.1:3000/stats/article')
+        this.$axios.get('/api/v1/stats/article')
           .then(res=>{
             this.archive = res.data;
           }).catch(err=>{

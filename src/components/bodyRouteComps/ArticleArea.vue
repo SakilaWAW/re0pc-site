@@ -35,7 +35,7 @@
     },
     methods: {
       fetchData() {
-        this.$axios.get(`http://127.0.0.1:3000/article/${this.articleId}`)
+        this.$axios.get(`/api/v1/article/${this.articleId}`)
           .then(res=>{
             this.article = res.data;
             this.$store.commit('setArticle', {article: res.data});
@@ -44,7 +44,7 @@
         });
       },
       updateCount() {
-        this.$axios.get(`http://127.0.0.1:3000/read/${this.articleId}`)
+        this.$axios.get(`/api/v1/read/${this.articleId}`)
           .then(res=>{
 
           }).catch(err=>{

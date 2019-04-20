@@ -29,7 +29,7 @@
     },
     methods: {
       fetchCategoryData() {
-        this.$axios.get(`http://127.0.0.1:3000/type/${this.category}`)
+        this.$axios.get(`/api/v1/type/${this.category}`)
           .then(res=>{
             this.articleList = res.data;
           }).catch(err=>{

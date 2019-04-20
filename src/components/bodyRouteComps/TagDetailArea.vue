@@ -29,7 +29,7 @@
     },
     methods: {
       fetchTagData() {
-        this.$axios.get(`http://127.0.0.1:3000/tag/${this.tag}`)
+        this.$axios.get(`/api/v1/tag/${this.tag}`)
           .then(res=>{
             this.articleList = res.data;
           }).catch(err=>{

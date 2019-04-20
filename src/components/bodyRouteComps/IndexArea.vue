@@ -41,7 +41,7 @@
     },
     methods: {
       toPage(page) {
-        this.$axios.get(`http://127.0.0.1:3000/page/${page}`)
+        this.$axios.get(`/api/v1/page/${page}`)
           .then((res)=>{
             this.articleList = res.data;
           }).catch(err=>{

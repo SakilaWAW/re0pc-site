@@ -21,7 +21,7 @@
     },
     methods: {
       fetchCategoryData() {
-        this.$axios.get('http://127.0.0.1:3000/stats/type')
+        this.$axios.get('/api/v1/stats/type')
           .then(res=>{
             this.categoryData = res.data;
           }).catch(err=>{

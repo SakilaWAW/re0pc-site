@@ -28,7 +28,7 @@
     },
     methods: {
       fetchTagData() {
-        this.$axios.get('http://127.0.0.1:3000/stats/tag')
+        this.$axios.get('/api/v1/stats/tag')
           .then(res=> {
             this.tagData = res.data;
           }).catch(err=>{
